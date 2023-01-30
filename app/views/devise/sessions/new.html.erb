@@ -1,0 +1,23 @@
+<section class='small-container py-8'>
+  <h1 class='text-center'>Login</h1>
+  <div class='pt-5'>
+    <%= simple_form_for resource, as: resource_name, url: session_path(resource_name), html: { data: { turbo: :false } } do |f| %>
+      <%= f.input :email, placeholder: '@mail.com' %>
+      <div class='relative' data-controller='password'>
+        <%= f.input :password, autocomplete: :off, required: true, input_html: {
+                                              class: 'pr-11', 'data-password-target': 'input'
+                                            },
+                                            placeholder: 'Enter password' %>
+        <div class='absolute top-[38px] right-3.5 cursor-pointer' data-action='click->password#toggleVisibility'>
+          <%= image_tag('icons/visibility-off.svg', class: 'visibility-off') %>
+          <%= image_tag('icons/visibility-on.svg', class: 'hidden visibility-on') %>
+        </div>
+      </div>
+      <div class='flex justify-end mt-8'>
+        <%= f.submit 'Submit', class: 'btn-base' %>
+      </div>
+    <% end %>
+    <%= button_to  'Login with Google', user_google_oauth2_omniauth_authorize_path, class: 'underline underline-offset-4 text-base font-gilroy', method: :post, :data => {turbo: "false"} %>
+  </div>
+</section>
+

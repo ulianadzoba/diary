@@ -1,0 +1,2 @@
+<%= turbo_stream.replace("#{dom_id(@post)}", partial: 'posts/post', locals: { journal: @journal, post: @post }) %>
+<%= turbo_stream.append('flash', partial: 'shared/flash') %>

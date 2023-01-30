@@ -1,0 +1,29 @@
+<%= simple_form_for post, url: [:user, @journal, @post] do |f| %>
+  <%= f.input :title %>
+  <%= f.input :content, rows: 40, input_html: { class: 'tinymce' } %>
+  
+  <h3 class='mt-2'>Images</h3>
+  <div id='images'>
+    <%= link_to_add_association f, :images, class: 'flex mt-4' do %>
+      <span class='heading-source-code font-gilroy pr-2'>Add image</span>
+      <%= image_tag 'icons/plus.svg', width: '16px' %>
+    <% end %>
+    <% if post.errors[:images].present? %>
+      <div class='mt-2 text-xs text-red-400'><%= gallery.errors[:images].join(', ') %></div>
+    <% end %>
+    <div class='flex flex-wrap mt-10 -mx-3 gap-y-6'>
+      <%= f.simple_fields_for :images do |image| %>
+        <%= render 'user/posts/image_fields', f: image %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='flex justify-end mt-8'>
+    <%= f.submit 'Save', class: 'btn-base' %>
+  </div>
+<% end %>
+
+<%= tinymce %>
+
+
+

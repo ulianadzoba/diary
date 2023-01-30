@@ -1,0 +1,9 @@
+<%= simple_form_for journal, url: url, html: { class: 'flex flex-col gap-5' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :preview, hint: "Allowed formats: #{journal.preview.allowed_extensions}. Recommended dimention #{journal.preview.recommended_dimension}" %>
+  <%= f.input :private %>
+  <div class='flex justify-end mt-8'>
+    <%= f.submit 'Save', class: 'btn-base' %>
+  </div>
+<% end %>

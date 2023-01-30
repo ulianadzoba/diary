@@ -1,0 +1,2 @@
+<%= turbo_stream.replace('journal-info', partial: 'journals/journal_info', locals: { journal: @journal }) %>
+<%= turbo_stream.append('flash', partial: 'shared/flash') %>

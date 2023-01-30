@@ -1,0 +1,25 @@
+<div id='user-info'>
+  <div class='header flex justify-between w-full py-10'>
+    <h1><%= user.full_name %></h1>
+    <%= link_to edit_user_profile_path, class: 'pr-4 block', data: { turbo_frame: 'modal' } do %>
+      <%= image_tag 'icons/edit.svg', width: '20px' %>
+    <% end %>
+  </div>
+  <div class='grid grid-cols-5 gap-5'>
+    <div class='col-span-2'>
+      <% if user.avatar.present?%>
+        <%= image_tag user.avatar.url(:medium), class: 'w-full' %>
+      <% else %>
+        <div class='p-6 bg-bright-brown'>
+          <%= image_tag 'icons/user.svg', class: 'bg-bright-brown' %>
+        </div>
+      <% end %>
+    </div>
+    <div class='col-span-3 font-source-code'>
+      <div>
+        <span class='font-bold pr-2'>Email:</span>
+        <span><%= mail_to user.email, target: '_blank', class: 'hover:underline w-fit' %></span>
+      </div>
+    </div>
+  </div>
+</div>

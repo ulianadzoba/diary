@@ -1,0 +1,21 @@
+<%= turbo_frame_tag :modal do %>
+  <%= tag.div tabindex: '-1', aria_hidden: 'true',
+              class: 'fixed z-50 w-full overflow-x-hidden overflow-y-auto ' \
+                      'inset-0',
+              data: { controller: "modal",
+                      modal_target: "modal",
+                      action: 'turbo:submit-end->modal#submitEnd ' \
+                              'keyup@window->modal#closeWithKeyboard' } do %>
+    <div class="w-full h-fit min-h-full p-4 mx-auto flex items-center modal-lg">
+      <div class="z-50 w-full mx-auto my-auto opacity-100 white-modal h-fit">
+        <div class="flex justify-between mb-5">
+          <h1><%= title %></h1>
+          <%= button_tag data: { action: "modal#hideModal" }, type: :button, class: 'p-0.5' do %>
+            <%= image_tag 'icons/close.svg', class: 'cursor-pointer' %>
+          <% end %>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

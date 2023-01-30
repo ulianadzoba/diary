@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <%= display_meta_tags site: 'Diary', reverse: true %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload", media: 'all' %>
+    <script>
+      window.RAILS_ENV = <%= raw Rails.env.to_json %>
+    </script>
+
+    <%= javascript_importmap_tags %>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@700&display=swap">
+    <% if Rails.env.production? %>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-MB31JT2HT9"></script>
+      <%= render 'shared/hotjar' unless current_user&.admin? %>
+    <% end %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+    <%= tinymce_assets %>
+  </head>
+
+  <body class="bg-base-beige pt-18">
+    <%= render 'shared/header' %>
+    <%= turbo_frame_tag :modal%>
+    <%= turbo_frame_tag :flash %>
+
+    <%= render 'shared/flash' %>
+    
+    <%= yield %>
+    
+    <%= render 'shared/footer' %>
+    
+    <% Rails.logger.silence do %>
+      <%= any_login_here if defined?(AnyLogin) %>
+    <% end %>
+  </body>
+</html>
+

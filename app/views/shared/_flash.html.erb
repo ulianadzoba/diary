@@ -1,0 +1,13 @@
+<% flash.each do |key, message| %>
+  <div id='flash' class='z-40 flash' data-controller='flash'>
+    <div class='m-auto'>
+      <div class="p-3 shadow-lg bg-dynamic" style="--dynamic-color: <%= flash_color(key) %>">
+        <div class='flex flex-row items-center'>
+          <div class='w-full ml-2 mr-6'>
+            <span class='font-semibold font-source-code'><%= message %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

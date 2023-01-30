@@ -1,0 +1,3 @@
+<%= render 'shared/modal', title: 'Edit diary' do |modal| %>
+  <%= render 'form', journal: @journal, url: [:user, @journal] %>
+<% end %>

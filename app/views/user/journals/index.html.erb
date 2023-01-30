@@ -1,0 +1,9 @@
+<div class='responsive-container mt-10'>
+  <div class='grid grid-cols-6 gap-10'>
+    <% @journals.each do |journal| %>
+      <div class='col-span-2'>
+        <%= render 'journals/journal_card', journal: journal, url: [:user, journal] %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+@layer components {
+  .btn-base {
+    @apply px-5 cursor-pointer text-lg font-pacifico text-accents-dark bg-white border-2 border-black hover:bg-black hover:text-white;
+  }
+}

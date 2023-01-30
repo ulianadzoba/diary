@@ -1,0 +1,38 @@
+<section class='small-container py-8'>
+  <h1 class='text-center'>Sign up</h1>
+  <div class='pt-5'>
+    <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: :false } } do |f| %>
+      <div class=''>
+        <%= f.input :first_name, required: true, placeholder: 'First name' %>
+        <%= f.input :last_name, required: true, placeholder: 'Last name' %>
+        <%= f.input :email, required: true, input_html: { class: '' },
+                                          placeholder: '@mail.com' %>
+        <div class='relative' data-controller='password'>
+          <%= f.input :password, autocomplete: :off, required: true, input_html: {
+                                                class: 'pr-11', 'data-password-target': 'input'
+                                              },
+                                              placeholder: 'Enter password' %>
+          <div class='absolute top-[38px] right-3.5 cursor-pointer' data-action='click->password#toggleVisibility'>
+            <%= image_tag('icons/visibility-off.svg', class: 'visibility-off') %>
+            <%= image_tag('icons/visibility-on.svg', class: 'hidden visibility-on') %>
+          </div>
+        </div>
+        <%= f.input :password_confirmation, required: true, placeholder: 'Confirm password' %>
+      </div>
+      <div class='flex justify-between mt-8'>
+        <div>
+          <div class='flex'>
+            <span class='font-source-code'>Have account?</span>
+            <%= link_to new_user_session_path, class: 'flex pl-3' do %>
+              <span class='text-base font-gilroy pr-2'>Login</span>
+              <%= image_tag 'icons/login.svg', width: '16px' %>
+            <% end %>
+          </div>
+
+        </div>
+        <%= f.submit 'Submit', class: 'btn-base' %>
+      </div>
+    <% end %>
+    <%= button_to  'Login with Google', user_google_oauth2_omniauth_authorize_path, class: 'underline underline-offset-4 text-base font-gilroy', method: :post, :data => {turbo: "false"} %>
+  </div>
+</section>

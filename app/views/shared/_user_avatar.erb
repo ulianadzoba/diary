@@ -1,0 +1,7 @@
+<div class='w-10 h-10 rounded-full avatar' id='user-avatar'>
+  <% if current_user.avatar.present?%>
+    <%= image_tag(current_user.avatar.url(:thumb), class: 'w-full h-full rounded-full object-cover') %>
+  <% else %>
+    <%= image_tag(Avatarro.image(current_user.full_name), class: 'rounded-full object-cover') %>
+  <% end %>
+</div>

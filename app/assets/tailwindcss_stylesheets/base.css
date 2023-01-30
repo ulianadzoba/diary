@@ -1,0 +1,21 @@
+@layer components {
+  abbr[title=required] {
+    @apply no-underline;
+  }
+
+  .flash {
+    @apply fixed flex max-w-sm m-3 right-0 top-24 lg:m-0 w-fit;
+  }
+  
+  .white-modal {
+    @apply flex flex-col w-full gap-5 p-10 text-left bg-base-beige shadow-md;
+  }
+
+  .modal-sm {
+    @apply max-w-md;
+  }
+
+  .modal-lg {
+    @apply max-w-2xl;
+  }
+}

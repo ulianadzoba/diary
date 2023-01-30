@@ -1,0 +1,25 @@
+<%= render 'shared/modal', title: 'Edit profile' do |modal| %>
+  <%= simple_form_for @user, url: user_profile_path, html: { class: 'flex flex-col gap-5' } do |f| %>
+    <div class='relative'>
+      <%= f.input :avatar, hint: "Allowed formats: #{@user.avatar.allowed_extensions}. Recommended dimention #{@user.avatar.recommended_dimension}" %>
+      <%= f.input :avatar_cache, as: :hidden %>
+      <% if @user.avatar.present?%>
+        <div class='absolute top-0 right-0 width-[60px]'>
+        <%= image_tag @user.avatar.url(:thumb), width: '60px' %>
+        </div>
+      <% end %>
+    </div>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email, focus: false %>
+    <div class='relative' data-controller='password'>
+      <%= f.input :password, input_html: { class: 'pr-11', 'data-password-target': 'input' }, placeholder: '**********' %>
+      <div class='absolute top-[38px] right-3.5 cursor-pointer' data-action='click->password#toggleVisibility'>
+        <%= image_tag('icons/visibility-off.svg', class: 'visibility-off') %>
+        <%= image_tag('icons/visibility-on.svg', class: 'hidden visibility-on') %>
+      </div>
+    </div>
+    <%= f.input :password_confirmation, placeholder: '**********' %>
+    <%= f.submit 'Save', class: 'btn-base ml-auto' %>
+  <% end %>
+<% end %>

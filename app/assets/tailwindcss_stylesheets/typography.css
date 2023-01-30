@@ -1,0 +1,39 @@
+@layer base {
+  h1 {
+    @apply text-4xl font-pacifico text-accents-dark;
+  }
+
+  h2 {
+    @apply text-2xl font-pacifico text-accents-dark;
+  }
+
+  h3 {
+    @apply text-xl font-pacifico text-accents-dark;
+  }
+}
+
+@layer components {
+  .heading-base {
+    @apply text-xl font-medium break-words font-pacifico text-accents-dark;
+  }
+
+  .heading-source-code {
+    @apply text-xl font-medium break-words font-source-code text-accents-dark;
+  }
+
+  .subtitle-base {
+    @apply text-base font-medium break-words font-pacifico text-accents-dark;
+  }
+
+  .content-base {
+    @apply text-base font-medium break-words font-source-code text-accents-dark;
+  }
+
+  .content-small {
+    @apply text-sm font-medium break-words font-source-code text-accents-dark;
+  }
+
+  .content-small-accent {
+    @apply text-sm font-semibold break-words font-source-code text-accents-dark;
+  }
+}

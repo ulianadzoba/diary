@@ -1,0 +1,18 @@
+<%= link_to url, class: 'pr-4 block' do %>
+  <div class='bg-bright-brown p-3 pl-6 relative rounded'>
+    <%= render 'shared/journal_spring' %>
+
+    <div class='bg-primary-white h-55 rounded'>
+      <% if journal.preview.present?%>
+        <div class='flex justify-center items-center h-full rounded' style="background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(<%= journal.preview.url(:medium) %>) no-repeat center;">
+          <h1 class='text-accents-brown text-center px-4'><%= journal.name %></h1>
+        </div>
+      <% else %>
+        <div class='flex justify-center items-center h-full'>
+          <h1 class='text-accents-brown text-center px-4'><%= journal.name %></h1>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+

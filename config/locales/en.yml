@@ -1,0 +1,8 @@
+en:
+  time:
+    formats:
+      long: "%d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"
+      short_date: "%d/%b/%Y"
+      full_date: "%d %B %Y"
+      time: "%H:%M"

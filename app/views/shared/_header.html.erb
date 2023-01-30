@@ -1,0 +1,62 @@
+<header class='fixed top-0 z-30 w-screen py-4 bg-white shadow-lg responsive-container' data-controller='header'>
+  <nav class='flex justify-between'>
+    <%= link_to root_path, class: 'flex items-center h-10' do %>
+      <%= image_tag 'logo.svg', width: '30px' %>
+    <% end %>
+    <div class='flex'>
+      <div class='items-center flex mr-10'>
+        <%= link_to 'Popular Diaries', journals_path, class: 'mr-8 heading-base' %>
+        <%= link_to 'News', '#', class: 'mr-8 heading-base' %>
+        <% if user_signed_in? %>
+          <%= link_to new_user_journal_path, class: 'flex', data: { turbo_frame: 'modal' } do %>
+            <span class='heading-source-code font-gilroy pr-2'>Create diary</span>
+            <%= image_tag 'icons/plus.svg', width: '16px' %>
+          <% end %>
+        <% end %>
+      </div>
+      <% if user_signed_in? %>
+        <div data-action='click->header#toggleDropdown' class='relative cursor-pointer dropdown dropdown-end dropdown-active'>
+          <div tabindex='0' class='flex items-center'>
+            <%= render 'shared/user_avatar' %>
+          </div>
+          <div data-header-target='dropdown' class='hidden absolute top-20 w-60 right-0 bg-white shadow dropdown-content'>
+            <ul tabindex='0'>
+              <li>
+                <p class='px-5 py-2 subtitle-base font-bold'>
+                  <%= current_user.full_name %>
+                </p>
+              </li>
+              <hr>
+              <li>
+                <p class='px-5 py-2 subtitle-base'>
+                  <%= link_to 'Profile', user_profile_path, class: 'cursor-pointer hover:bg-neutral-gray-50' %>
+                </p>    
+              </li>
+              <li>
+                <p class='px-5 py-2 subtitle-base'>
+                  <%= link_to 'Diaries', user_journals_path, class: 'cursor-pointer body-2-short hover:bg-neutral-gray-50' %>
+                </p>    
+              </li>
+              <hr>
+              <li>
+                <%= button_to destroy_user_session_path, method: :delete, class: 'px-5 py-2 subtitle-base hover:bg-neutral-gray-50 flex items-center' do%>
+                  <span class='font-gilroy pr-2'>Logout</span>
+                  <%= image_tag 'icons/logout.svg', width: '16px' %>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      <% else %>
+        <%= link_to new_user_session_path, class: 'flex items-center pl-5' do %>
+          <span class='heading-source-code font-gilroy pr-2'>Login</span>
+          <%= image_tag 'icons/login.svg', width: '16px' %>
+        <% end %>
+        <%= link_to new_user_registration_path, class: 'pl-5 items-center flex' do %>
+          <span class='heading-source-code font-gilroy pr-2'>Sign up</span>
+          <%= image_tag 'icons/sign-up.svg', width: '16px' %>
+        <% end %>
+      <% end %>
+    </div>
+  </nav>
+</header>

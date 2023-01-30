@@ -1,0 +1,28 @@
+<div class='responsive-container mt-10'>
+  <div class='bg-bright-brown p-3 pl-6 relative rounded'>
+    <%= render 'shared/journal_spring' %>
+    
+    <div class='bg-primary-white h-55 p-4 rounded'>
+      <div class='grid grid-cols-5 gap-10'>
+        <div class='col-span-2'>
+          <div>
+            <h1><%= @journal.name %></h1>
+            <h3><%= @journal.description %></h3>
+          </div>
+        </div>
+        <div class='col-span-3'>
+          <% if @journal.preview.present?%>
+            <div class='flex w-full'>
+              <%= image_tag @journal.preview.url(:medium), class:'w-full'%>
+            </div>
+          <% else %>
+            <div class='flex justify-center items-center h-full'>
+              <h1 class='text-accents-brown text-center'><%= @journal.name %></h1>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

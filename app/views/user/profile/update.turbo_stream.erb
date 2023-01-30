@@ -1,0 +1,3 @@
+<%= turbo_stream.replace('user-info', partial: 'user/profile/info', locals: { user: @user }) %>
+<%= turbo_stream.update('user-avatar', partial: 'shared/user_avatar') %>
+<%= turbo_stream.append('flash', partial: 'shared/flash') %>
