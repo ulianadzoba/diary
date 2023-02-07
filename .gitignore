@@ -23,9 +23,8 @@
 !/storage/.keep
 /tmp/storage/*
 !/tmp/storage/
-!/tmp/storage/.keep
-
-/public/assets
+!/tmp/storage/.keep# Ignore uploaded files in development
+/public/uploads
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
@@ -49,3 +48,11 @@ rerun.txt
 pickle-email-*.html
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# Ignore node_modules
+node_modules/
+
+# Ignore precompiled javascript packs
+/public/packs
+/public/packs-test
+/public/assets

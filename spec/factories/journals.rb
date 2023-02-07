@@ -14,7 +14,7 @@
 FactoryBot.define do
   factory :journal do
     name { Faker::Book.title }
-    description { Faker::Lorem.paragraphs(number: 3).join }
+    description { Faker::Lorem.paragraphs(number: 8).join }
     user
 
     trait :public do

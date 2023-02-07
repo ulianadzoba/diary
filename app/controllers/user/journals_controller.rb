@@ -46,6 +46,29 @@ class User::JournalsController < User::AccountController
     redirect_to [:user, :journals], notice: 'Diary has been removed.'
   end
 
+  def new_author
+    @journal = resource
+  end
+
+  def assign_author
+    @journal = resource
+    email = params.dig(:journal, :email)
+    user = User.find_by(email: email)
+
+    if user
+      if user.journals.exists?(@journal.id)
+        flash.now[:alert] = "User with email #{email} is already assigned"
+      else
+        user.journals << @journal
+        flash.now[:notice] = 'User is successfully assigned'
+      end
+    else
+      flash.now[:alert] = 'Please check that email is valid and user is already registered'
+      render turbo_stream: turbo_stream.append('modal', partial: 'user/journals/assign_author_modal', locals: {journal: @journal}) +
+                           turbo_stream.append('flash', partial: 'shared/flash')
+    end
+  end
+
   private 
 
   def collection

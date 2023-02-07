@@ -1,13 +1,15 @@
 <% if f.object.file.present? %>
-  <div class='relative w-1/3 px-3'>
-    <%= image_tag f.object.file.url, class: 'rounded h-[200px] object-cover' %>
-    <div class='absolute top-0 bottom-0 z-10 flex items-start justify-end duration-300 opacity-0 bg-neutral-gray-100 left-3 right-3 hover:opacity-80'>
+  <div class='relative w-1/3 px-3 nested-fields'>
+    <%= image_tag f.object.file.url, class: 'h-[200px] object-cover' %>
+    <div class='absolute top-0 bottom-0 z-10 flex items-start justify-end duration-300 opacity-0 bg-gray-300 left-3 right-3 hover:opacity-80'>
       <%= link_to_remove_association f, class: 'm-4' do %>
-        <%= image_tag 'icons/delete.svg', width: '24px' %>
+        <%= image_tag 'icons/delete.svg', width: '16px' %>
       <% end %>
     </div>
   </div>
 <% else %>
-  <%= f.input :description %>
-  <%= f.input :file, as: :file %>
+  <div class='mt-4'>
+    <%= f.input :description %>
+    <%= f.input :file, as: :file %>
+  </div>
 <% end %>

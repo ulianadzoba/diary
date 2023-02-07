@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   namespace :user do
     resource :profile, controller: :profile, only: [:show, :edit, :update]
     resources :journals do
+      member do
+        get :new_author
+        post :assign_author
+      end
       resources :posts, except: [:index]
     end
   end

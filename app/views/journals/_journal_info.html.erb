@@ -8,7 +8,7 @@
       <% if journal.preview.present?%>
         <%= image_tag journal.preview.url(:large), class:'w-full'%>
       <% else %>
-
+        <%= image_tag 'placeholder-view.png', class:'w-full'%>
       <% end %>
     </div>
   </div>

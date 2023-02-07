@@ -40,3 +40,7 @@
 .swiper-button-disabled {
   display: none !important;
 }
+
+.tox-edit-area__iframe {
+  padding: 15px !important;
+}

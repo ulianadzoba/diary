@@ -1,5 +1,8 @@
 <div class='responsive-container mt-4'>
   <div class='flex justify-end'>
+    <%= link_to [:new_author, :user, @journal], class: 'block pr-4', data: { turbo_frame: 'modal' } do %>
+      <%= image_tag 'icons/user-plus.svg', width: '26px' %>
+    <% end %>
     <%= link_to [:edit, :user, @journal], class: 'block pr-4', data: { turbo_frame: 'modal' } do %>
       <%= image_tag 'icons/edit.svg', width: '20px' %>
     <% end %>
@@ -14,14 +17,14 @@
 
   <div class='grid grid-cols-6 gap-10 mt-10'>
     <%= link_to [:new, :user, @journal, :post], class: 'block col-span-2', data: { turbo_frame: 'modal' } do %>
-      <div class='bg-primary-white shadow flex justify-center h-[300px]'>
-        <%= image_tag 'icons/plus.svg', width: '100px' %>
+      <div class='bg-primary-white shadow flex justify-center h-[290px]'>
+        <%= image_tag 'icons/file-plus.svg', width: '100px' %>
       </div>
     <% end %>
 
     <% @journal.posts.ordered.each do |post| %>
       <div class='col-span-2'>
-        <%= render 'posts/post', post: post, journal: @journal %>
+        <%= render 'posts/post_card', post: post, journal: @journal %>
       </div>
     <% end %>
   </div>

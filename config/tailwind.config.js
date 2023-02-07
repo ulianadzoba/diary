@@ -54,6 +54,9 @@ module.exports = {
       },
       borderRadius: {
         'xs': '0.125rem',
+      },
+      lineClamp: {
+        '7': '7',
       }
     },
   },
@@ -61,5 +64,6 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
+    require('@tailwindcss/line-clamp'),
   ]
 }

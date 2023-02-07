@@ -1,0 +1,11 @@
+<%= simple_form_for :journal, url: [:assign_author, :user, @journal], html: { class: 'flex flex-col gap-5', id: 'author-form' } do |f| %>
+  <%= f.input :email, input_html: { value: nil }, hint: 'Please enter user email' %>
+  <!--
+  <% if @journal.errors.has_key?(:email) %>
+    <div class='text-xs invalid-email'><%= @journal.errors[:email].join %></div>
+  <% end %>
+  -->
+  <div class='flex justify-end mt-8'>
+    <%= f.submit 'Save', class: 'btn-base' %>
+  </div>
+<% end %>
