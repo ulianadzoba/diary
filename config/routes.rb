@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :posts, only: [:show]
   end
 
+  post 'tinymce_pictures', to: 'tinymce_pictures#create'
+
   namespace :user do
     resource :profile, controller: :profile, only: [:show, :edit, :update]
     resources :journals do

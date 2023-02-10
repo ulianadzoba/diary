@@ -15,5 +15,7 @@ FactoryBot.define do
     title { Faker::Book.title }
     content { Faker::Lorem.paragraphs(number: 10).join }
     journal
+
+    images { create_list(:image, 4, imageable: instance) }
   end
 end

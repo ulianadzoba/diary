@@ -24,6 +24,10 @@
     <% end %>
     <%= favicon_link_tag asset_path('favicon.ico') %>
     <%= tinymce_assets %>
+
+    <% if content_for? :for_head %>
+      <%= yield :for_head %>
+    <% end %>
   </head>
 
   <body class="bg-base-beige pt-18">

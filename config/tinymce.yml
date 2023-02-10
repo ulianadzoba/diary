@@ -20,9 +20,10 @@ noneditable_class: 'mceNonEditable'
 toolbar_mode: 'sliding'
 contextmenu: 'link image table'
 # extended_valid_elements: 'a[href|target=_blank]'
-images_upload_url: '/account/tinymce_pictures'
+images_upload_url: '/tinymce_pictures'
 relative_urls: false
 content_css: 'tailwind.css'
+content_style: "body { font-family: SourceCodePro }"
 invalid_styles:
     'p': 'background-color'
     'h2': 'background-color'

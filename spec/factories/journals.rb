@@ -20,5 +20,9 @@ FactoryBot.define do
     trait :public do
       private { false }
     end
+
+    trait :with_preview do
+      preview { Rack::Test::UploadedFile.new(Dir[Rails.root.join('spec', 'files', 'images', '*')].sample) }
+    end
   end
 end

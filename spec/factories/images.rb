@@ -12,6 +12,6 @@
 #
 FactoryBot.define do
   factory :image do
-    
+    file { Rack::Test::UploadedFile.new(Dir[Rails.root.join('spec', 'files', 'images', '*')].sample) }
   end
 end
