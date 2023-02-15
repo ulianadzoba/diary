@@ -8,10 +8,11 @@
         <%= link_to 'Popular Diaries', journals_path, class: 'mr-8 heading-base' %>
         <%= link_to 'News', '#', class: 'mr-8 heading-base' %>
         <% if user_signed_in? %>
-          <%= link_to new_user_journal_path, class: 'flex', data: { turbo_frame: 'modal' } do %>
+          <%= link_to [:new, :user, :journal], class: 'flex', data: { turbo_frame: 'modal' } do %>
             <span class='heading-source-code font-gilroy pr-2'>Create diary</span>
             <%= image_tag 'icons/plus.svg', width: '16px' %>
           <% end %>
+          <%= render 'shared/notification_bell'%>
         <% end %>
       </div>
       <% if user_signed_in? %>

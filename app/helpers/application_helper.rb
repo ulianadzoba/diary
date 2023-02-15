@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+  
   def flash_color(type)
     case type
     when 'notice'

@@ -1,0 +1,5 @@
+<div id='load_more' class='my-12 flex justify-center'>
+  <% if next_page %>
+    <%= link_to('Load more', page_path, class: 'btn-base block', data: { turbo_frame: 'page_handler' }) %>
+  <% end %>
+</div>

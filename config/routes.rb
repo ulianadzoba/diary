@@ -18,6 +18,11 @@ Rails.application.routes.draw do
 
   namespace :user do
     resource :profile, controller: :profile, only: [:show, :edit, :update]
+    resources :notifications, only: [:index, :show] do
+      collection do
+        get :mark_all_as_read
+      end
+    end
     resources :journals do
       member do
         get :new_author

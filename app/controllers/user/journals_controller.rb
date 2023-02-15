@@ -60,6 +60,8 @@ class User::JournalsController < User::AccountController
         flash.now[:alert] = "User with email #{email} is already assigned"
       else
         user.journals << @journal
+        Notifier.new(user: user, journal: @journal, type: Notification::INVITE_AUTHOR_NOTIFICATION).create
+        
         flash.now[:notice] = 'User is successfully assigned'
       end
     else

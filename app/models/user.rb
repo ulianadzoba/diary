@@ -35,6 +35,7 @@ class User < ApplicationRecord
 
   has_and_belongs_to_many :journals
   has_many :own_journals, class_name: 'Journal', foreign_key: :user_id, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   validates :first_name, :last_name, :role, presence: true
   validates :role, inclusion: { in: self.roles }

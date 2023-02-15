@@ -18,6 +18,7 @@ module.exports = {
         'source-code': ['SourceCodePro'],
       },
       fontSize: {
+        'xs': '0.4rem',
         '2xxl': '1.75rem',
         '3xxl': '2rem',
         '4xxl': '2.75rem',
@@ -28,6 +29,7 @@ module.exports = {
         'accents-brown': 'rgba(116, 89, 70, 1)',
         'bright-brown': 'rgb(201, 179, 153)',
         'accents-dark': '#162035',
+        'accents-red': 'rgb(208, 42, 42)',
         'primary-white': '#FAFAFA',
         'dynamic': 'var(--dynamic-color)',
         'base-green': 'rgb(156, 219, 156)',

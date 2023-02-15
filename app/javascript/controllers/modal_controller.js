@@ -14,8 +14,6 @@ export default class extends Controller {
 
     this.modalTarget.remove();
     this.backdrop.remove();
-
-    location.reload(); //temporarily tinymce init
   }
 
   submitEnd(e) {
