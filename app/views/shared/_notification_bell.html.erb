@@ -1,10 +1,23 @@
 <div id='notification_bell'>
   <% if current_user.notifications.unseen.any? %>
-    <div class='relative pl-10'>
-      <%= image_tag 'icons/bell.svg', width: '26px' %>
-      <div class='rounded-full bg-accents-red w-5 h-5 absolute -top-1 -right-1 flex justify-center items-center'>
-        <div class='text-primary-white text-xs font-semibold'>
-          <%= current_user.notifications.unseen.count %>
+    <div data-action='click->header#toggleDropdown' class='relative cursor-pointer dropdown dropdown-end dropdown-active'>
+      <div tabindex='0' class='relative pl-10'>
+        <%= image_tag 'icons/bell.svg', width: '26px' %>
+        <div class='rounded-full bg-accents-red w-5 h-5 absolute -top-1 -right-1 flex justify-center items-center'>
+          <div class='text-primary-white text-xs font-semibold'>
+            <%= current_user.notifications.unseen.count %>
+          </div>
+        </div>
+      </div>
+      <div data-header-target='dropdown' class='hidden absolute top-20 w-96 right-0 bg-white shadow dropdown-content'>
+        <%= render partial: 'user/notifications/notification', collection: current_user.notifications.unseen.ordered.limit(5), locals: { small_view: true } %>
+        <div class='flex justify-between px-5 py-2'>
+          <%= link_to 'See All', [:user, :notifications], class: 'flex font-pacifico' %>
+          <% if current_user.notifications.present? %>
+            <%= link_to [:mark_all_as_read, :user, :notifications], class: 'flex', data: { turbo_frame: 'modal' } do %>
+              <%= image_tag 'icons/check.svg', width: '20px' %>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>

@@ -35,7 +35,7 @@ module.exports = {
         'base-green': 'rgb(156, 219, 156)',
         'base-red': 'rgba(219, 150, 155, 1)',
         'base-yellow': 'rgba(237, 237, 164, 1)',
-        'base-gray': 'rgba(227, 223, 214, 1)',
+        'base-gray': '#e8e3d9',
       },
       padding: {
         '18': '4.5rem',

@@ -1,4 +1,4 @@
-<header class='fixed top-0 z-30 w-screen py-4 bg-white shadow-lg responsive-container' data-controller='header'>
+<header class='fixed top-0 z-30 w-screen py-4 bg-white shadow-lg responsive-container' data-controller='header' data-action='header:click:outside->header#closeDropdown'>
   <nav class='flex justify-between'>
     <%= link_to root_path, class: 'flex items-center h-10' do %>
       <%= image_tag 'logo.svg', width: '30px' %>

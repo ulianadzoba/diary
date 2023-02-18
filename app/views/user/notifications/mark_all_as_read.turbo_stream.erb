@@ -1,2 +1,2 @@
 <%= turbo_stream.replace('notification_bell', partial: 'shared/notification_bell') %>
-<%= turbo_stream.replace('notifications', partial: 'user/notifications/notification', collection: @notifications) %>
+<%= turbo_stream.replace('notifications', partial: 'user/notifications/notification', collection: @notifications, locals: { small_view: false }) %>

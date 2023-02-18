@@ -1,9 +1,11 @@
 <section class='medium-container'>
   <div class='flex justify-between items-start'>
     <h1 class='mb-8'>Notifications</h1>
-    <% if @notifications.present? %>
-      <%= link_to [:mark_all_as_read, :user, :notifications], class: 'flex', data: { turbo_frame: 'modal' } do %>
-        <%= image_tag 'icons/check.svg', width: '24px' %>
+    <% if @notifications.unseen.any? %>
+      <%= render layout: 'shared/with_tooltip', locals: {tooltip_text: 'Mark all as read'} do %>
+        <%= link_to [:mark_all_as_read, :user, :notifications], class: 'flex', data: { turbo_frame: 'modal' } do %>
+          <%= image_tag 'icons/check.svg', width: '24px' %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
@@ -11,7 +13,7 @@
   <%= turbo_frame_tag 'page_handler' %>
   <% if @notifications.present? %>
     <div id='notifications'>
-      <%= render partial: 'user/notifications/notification', collection: @notifications %>
+      <%= render partial: 'user/notifications/notification', collection: @notifications, locals: { small_view: false } %>
     </div>
     <% next_page = @pagy.next %>
     <%= render 'shared/load_more', next_page: next_page, page_path: user_notifications_path(page: next_page)  %>

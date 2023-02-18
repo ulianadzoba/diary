@@ -1,0 +1,16 @@
+<%= link_to user_notification_path(notification, redirect_url: user_journal_path(notification.journal)), class: 'block' do %>
+  <div class="<%= notification.seen? ? 'bg-primary-white' : 'bg-base-gray' %> px-5 py-2 border-b">
+    <div class='flex items-center'>
+      <div class='relative w-10'>
+        <% unless notification.seen? %>
+          <div class='absolute w-2 h-2 bg-accents-red rounded top-0 left-0'></div>
+        <% end %>
+        <%= image_tag 'icons/user-plus.svg', width: '20px' %>
+      </div>
+      <p class='pl-2 content-small leading-5'>
+        <span>You have been invited to join journal</span>
+        <span class='font-bold'><%= notification.journal.name %></span>
+      </p>
+    </div>
+  </div>
+<% end %>

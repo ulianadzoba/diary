@@ -5,7 +5,7 @@ class Notifier
     @type = type
   end
 
-  def create
+  def create_notification
     @user.notifications.find_or_create_by(type: @type, journal: @journal)
   end
 end

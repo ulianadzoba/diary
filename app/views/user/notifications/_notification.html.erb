@@ -1,1 +1,5 @@
-<%= render "user/notifications/#{notification.type.underscore}", notification: notification %>
+<% if small_view %>
+  <%= render "user/notifications/#{notification.type.underscore}_small", notification: notification %>
+<% else %>
+  <%= render "user/notifications/#{notification.type.underscore}", notification: notification %>
+<% end %>

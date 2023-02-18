@@ -1,12 +1,12 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-@import "../tailwindcss_stylesheets/fonts.css";
-@import "../tailwindcss_stylesheets/typography.css";
-@import "../tailwindcss_stylesheets/containers.css";
-@import "../tailwindcss_stylesheets/base.css";
-@import "../tailwindcss_stylesheets/buttons.css";
-
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import '../tailwindcss_stylesheets/fonts.css';
+@import '../tailwindcss_stylesheets/typography.css';
+@import '../tailwindcss_stylesheets/containers.css';
+@import '../tailwindcss_stylesheets/base.css';
+@import '../tailwindcss_stylesheets/buttons.css';
+@import 'popper.css';
 
 input[type="file"]::file-selector-button {
   border: 2px solid black;

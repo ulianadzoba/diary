@@ -13,7 +13,6 @@
  *= require_self
  *= require animate.min.css
  *= require swiper-bundle.min.css
- *= require utils/tippy.min.css
  */
 
 .swiper-pagination-bullet-active {

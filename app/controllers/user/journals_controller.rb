@@ -60,7 +60,7 @@ class User::JournalsController < User::AccountController
         flash.now[:alert] = "User with email #{email} is already assigned"
       else
         user.journals << @journal
-        Notifier.new(user: user, journal: @journal, type: Notification::INVITE_AUTHOR_NOTIFICATION).create
+        Notifier.new(user: user, journal: @journal, type: Notification::INVITE_AUTHOR_NOTIFICATION).create_notification
         
         flash.now[:notice] = 'User is successfully assigned'
       end
@@ -74,7 +74,8 @@ class User::JournalsController < User::AccountController
   private 
 
   def collection
-    current_user.own_journals
+    journal_ids = current_user.own_journals.pluck(:id) + current_user.journals.pluck(:id)
+    Journal.where(id: journal_ids)
   end
 
   def resource

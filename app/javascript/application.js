@@ -2,3 +2,10 @@
 import '@hotwired/turbo-rails'
 import 'controllers'
 import '@oddcamp/cocoon-vanilla-js'
+import "@popperjs/core"
+
+window.process = {
+  env: {
+    NODE_ENV: 'development'
+  }
+}

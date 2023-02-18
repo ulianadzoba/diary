@@ -13,6 +13,12 @@
 #
 FactoryBot.define do
   factory :notification do
-    
+    type { Notification::INVITE_AUTHOR_NOTIFICATION }
+    user
+    journal
+
+    trait :seen do
+      seen { true }
+    end
   end
 end
