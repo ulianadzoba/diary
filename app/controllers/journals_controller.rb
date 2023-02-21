@@ -1,10 +1,11 @@
 class JournalsController < ApplicationController
   def index
-    @journals = collection
+    @pagy, @journals = pagy(collection, items: 9)
   end
     
   def show
     @journal = resource
+    @pagy, @posts = pagy(@journal.posts.ordered, items: 9)
   end
 
   private

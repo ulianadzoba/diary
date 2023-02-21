@@ -10,6 +10,7 @@ export default class extends Controller {
 
   toggleDropdown(event) {
     this.dropdownTargets.forEach((element) => {
+      if(!event.currentTarget.contains(element) && !element.classList.contains('hidden')) element.classList.add('hidden');
       if(event.currentTarget.contains(element)) element.classList.toggle('hidden');
     })
   }

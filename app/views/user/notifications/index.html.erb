@@ -3,7 +3,7 @@
     <h1 class='mb-8'>Notifications</h1>
     <% if @notifications.unseen.any? %>
       <%= render layout: 'shared/with_tooltip', locals: {tooltip_text: 'Mark all as read'} do %>
-        <%= link_to [:mark_all_as_read, :user, :notifications], class: 'flex', data: { turbo_frame: 'modal' } do %>
+        <%= link_to [:mark_all_as_read, :user, :notifications], class: 'flex' do %>
           <%= image_tag 'icons/check.svg', width: '24px' %>
         <% end %>
       <% end %>

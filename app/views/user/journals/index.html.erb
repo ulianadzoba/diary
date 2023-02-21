@@ -1,9 +1,13 @@
 <div class='responsive-container mt-10'>
-  <div class='grid grid-cols-6 gap-10'>
-    <% @journals.each do |journal| %>
-      <div class='col-span-2'>
-        <%= render 'journals/journal_card', journal: journal, url: [:user, journal] %>
-      </div>
-    <% end %>
-  </div>
+  <%= turbo_frame_tag 'page_handler' %>
+  <% if @journals.present? %>
+    <div id='journals' class='grid grid-cols-6 gap-10'>
+      <%= render partial: 'journals/journal', collection: @journals, locals: { public: false } %>
+    </div>
+    <% next_page = @pagy.next %>
+    <%= render 'shared/load_more', next_page: next_page, page_path: user_journals_path(page: next_page)  %>
+  <% else %>
+    <div class='mt-8 content-base'>No journals</div>
+  <% end %>
 </div>
+

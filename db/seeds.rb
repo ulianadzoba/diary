@@ -10,6 +10,6 @@ end
 
 puts 'Create posts'
 Journal.all.find_each do |journal|
-  5.times { FactoryBot.create :post, journal: journal }
+  20.times { FactoryBot.create :post, journal: journal }
 end
 

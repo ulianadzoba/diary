@@ -49,7 +49,8 @@ class User::PostsController < User::AccountController
   private
 
   def journal_resource
-    Journal.find(params[:journal_id])
+    journal_ids = current_user.own_journals.pluck(:id) + current_user.journals.pluck(:id)
+    Journal.where(id: journal_ids).find(params[:journal_id])
   end
 
   def collection

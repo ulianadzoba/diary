@@ -1,0 +1,28 @@
+<div id="<%= dom_id post %>_card" class='bg-primary-white shadow relative h-[290px]'>
+  <div class='absolute -top-4 right-20'>
+    <%= image_tag 'icons/clip.svg', width: '30px'%>
+  </div>
+  <div class='post-header bg-bright-brown p-4 h-[116px]'>
+    <div class='flex justify-between h-full'>
+      <div class='pr-8 flex flex-col justify-between'>
+        <%= link_to [:user, journal, post], class: 'block col-span-2', data: { turbo_frame: 'modal' } do %>
+          <h3><%= post.title %></h3>
+        <% end %>
+        <p class='content-small-accent mt-2'><%= l(post.created_at, format: :full_date) %></p>
+      </div>
+
+      <div class='flex justify-end'>
+        <%= link_to [:edit, :user, journal, post], data: { turbo_frame: 'modal' }, class: 'block pr-2' do %>
+          <%= image_tag 'icons/edit.svg', width: '16px' %>
+        <% end %>
+        <%= button_to [:user, journal, post], method: :delete, remote: true, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'block' do %>
+          <%= image_tag 'icons/delete.svg', width: '16px' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class='post-content p-4'>
+    <p class='content-small line-clamp-7'><%= post.content %></p>
+  </div>
+</div>

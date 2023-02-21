@@ -1,4 +1,4 @@
-<%= link_to url, class: 'pr-4 block' do %>
+<%= link_to (public ? journal_path(journal) : user_journal_path(journal)), class: 'pr-4 block' do %>
   <div class='bg-bright-brown p-3 pl-6 relative rounded'>
     <%= render 'shared/journal_spring' %>
 

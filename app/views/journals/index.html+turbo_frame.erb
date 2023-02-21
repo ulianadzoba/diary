@@ -1,0 +1,8 @@
+<% next_page = @pagy.next %>
+<%= turbo_frame_tag 'page_handler' do %>
+  <%= turbo_stream_action_tag('append', target: 'journals',
+    template: %(#{render partial: 'journals/journal', collection: @journals, locals: { public: true }})) %>
+  <%= turbo_stream_action_tag('replace', target: 'load_more', 
+    template: %(#{render 'shared/load_more', next_page: next_page, page_path: journals_path(page: next_page)})) %>
+<% end %>
+

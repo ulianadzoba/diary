@@ -11,11 +11,13 @@
       </div>
       <div data-header-target='dropdown' class='hidden absolute top-20 w-96 right-0 bg-white shadow dropdown-content'>
         <%= render partial: 'user/notifications/notification', collection: current_user.notifications.unseen.ordered.limit(5), locals: { small_view: true } %>
-        <div class='flex justify-between px-5 py-2'>
+        <div class='flex justify-between px-5 py-2 items-center'>
           <%= link_to 'See All', [:user, :notifications], class: 'flex font-pacifico' %>
           <% if current_user.notifications.present? %>
-            <%= link_to [:mark_all_as_read, :user, :notifications], class: 'flex', data: { turbo_frame: 'modal' } do %>
-              <%= image_tag 'icons/check.svg', width: '20px' %>
+            <%= render layout: 'shared/with_tooltip', locals: {tooltip_text: 'Mark all as read'} do %>
+              <%= link_to [:mark_all_as_read, :user, :notifications], class: 'flex' do %>
+                <%= image_tag 'icons/check.svg', width: '20px' %>
+              <% end %>
             <% end %>
           <% end %>
         </div>

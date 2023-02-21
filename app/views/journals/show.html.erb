@@ -1,28 +1,16 @@
-<div class='responsive-container mt-10'>
-  <div class='bg-bright-brown p-3 pl-6 relative rounded'>
+<div class='responsive-container mt-4'>
+  <div class='bg-bright-brown p-3 pl-6 relative rounded mt-4'>
     <%= render 'shared/journal_spring' %>
-    
-    <div class='bg-primary-white h-55 p-4 rounded'>
-      <div class='grid grid-cols-5 gap-10'>
-        <div class='col-span-2'>
-          <div>
-            <h1><%= @journal.name %></h1>
-            <h3><%= @journal.description %></h3>
-          </div>
-        </div>
-        <div class='col-span-3'>
-          <% if @journal.preview.present?%>
-            <div class='flex w-full'>
-              <%= image_tag @journal.preview.url(:medium), class:'w-full'%>
-            </div>
-          <% else %>
-            <div class='flex justify-center items-center h-full'>
-              <h1 class='text-accents-brown text-center'><%= @journal.name %></h1>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
+    <%= render 'journals/journal_info', journal: @journal %>
   </div>
+
+  <%= turbo_frame_tag 'page_handler' %>
+  <div id='posts' class='grid grid-cols-6 gap-10 mt-10'>
+    <%= render partial: 'posts/post', collection: @posts %>
+  </div>
+  <% next_page = @pagy.next %>
+  <%= render 'shared/load_more', next_page: next_page, page_path: journal_path(@journal, page: next_page) %>
 </div>
+
+
 

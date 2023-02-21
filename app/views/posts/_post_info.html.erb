@@ -1,0 +1,49 @@
+<section class='large-container relative'>
+  <div class='absolute -top-5 right-60'>
+    <%= image_tag 'icons/clip.svg', width: '50px'%>
+  </div>
+  <div class='flex justify-between'>
+    <h1 class='pr-10'><%= post.title %></h1>
+  </div>
+  <p class='content-small-accent mt-8'><%= l(post.created_at, format: :full_date) %></p>
+  <div class='content-base my-8'>
+    <%== post.content %>
+  </div>
+
+  <div class='!py-8 swiper-container swiper relative'
+       data-controller='swiper'
+       data-swiper-options-value='{"freeMode": false, "slidesPerView": "1", "spaceBetween": 12, "pagination": {"el": ".swiper-pagination", "clickable": true}, "navigation": {"nextEl": ".swiper-button-next", "prevEl": ".swiper-button-prev"}}'>
+    <div class='swiper-wrapper'>   
+      <% post.images.in_groups_of(3).each do |group| %>
+        <div class='swiper-slide'>
+          <div class='flex flex-wrap -mx-3 gap-y-6'>
+            <% group.compact.each do |image| %>
+              <div class="w-full px-3 sm:w-1/3">
+                <%= content_tag(
+                    :div,
+                    nil,
+                    class: {
+                        'text-over-image' => image.description.present?,
+                        'text-over-image-disable' => !image.description.present?,
+                        'w-full bg-cover h-52' => true
+                      },
+                      style: "background-image: url(#{image.file.url})",
+                      data: { text: sanitize(image.description) }
+                    ) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+      
+    <div class='!absolute swiper-button-prev bg-base-beige !w-10 !h-10 shadow-2xl rounded-full'>
+      <%= image_tag 'icons/back.svg' %>
+    </div>
+    <div class='!absolute swiper-button-next bg-base-beige !w-10 !h-10 shadow-2xl rounded-full'>
+      <%= image_tag 'icons/forward.svg' %>
+    </div>
+    
+    <div class='swiper-pagination !bottom-0'></div>
+  </div>
+</section>

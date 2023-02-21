@@ -1,10 +1,11 @@
 class User::JournalsController < User::AccountController
   def index
-    @journals = collection
+    @pagy, @journals = pagy(collection, items: 9)
   end
 
   def show
     @journal = resource
+    @pagy, @posts = pagy(@journal.posts.ordered, items: 8)
   end
 
   def new
@@ -75,7 +76,7 @@ class User::JournalsController < User::AccountController
 
   def collection
     journal_ids = current_user.own_journals.pluck(:id) + current_user.journals.pluck(:id)
-    Journal.where(id: journal_ids)
+    Journal.where(id: journal_ids).includes(:posts)
   end
 
   def resource

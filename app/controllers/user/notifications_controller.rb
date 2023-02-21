@@ -1,6 +1,6 @@
 class User::NotificationsController < User::AccountController
   def index
-    @pagy, @notifications = pagy(collection, items: 10)
+    @pagy, @notifications = pagy(collection, items: 12)
   end
 
   def show
