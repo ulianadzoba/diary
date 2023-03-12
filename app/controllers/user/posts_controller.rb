@@ -43,7 +43,7 @@ class User::PostsController < User::AccountController
     @post = resource
 
     @post.destroy
-    redirect_to [:user, @journal], notice: 'Journal has been removed.'
+    redirect_to [:user, @journal], notice: 'Post has been removed.'
   end
 
   private
@@ -62,7 +62,7 @@ class User::PostsController < User::AccountController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :journal_id,
+    params.require(:post).permit(:title, :content, :audio, :journal_id,
       images_attributes: [:id, :file, :description, :_destroy])
   end
 end

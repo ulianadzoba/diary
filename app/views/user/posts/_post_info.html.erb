@@ -14,6 +14,13 @@
     </div>
   </div>
   <p class='content-small-accent mt-8'><%= l(post.created_at, format: :full_date) %></p>
+  
+  <% if post.audio.attached? %>
+    <div class='mt-8'>
+      <%= audio_tag(url_for(post.audio), class:'message-audio', controls: '') %>
+    </div>
+  <% end %>
+
   <div class='content-base my-8'>
     <%== post.content %>
   </div>
