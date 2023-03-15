@@ -18,7 +18,7 @@ module.exports = {
         'source-code': ['SourceCodePro'],
       },
       fontSize: {
-        'xs': '0.4rem',
+        'xs': '0.55rem',
         '2xxl': '1.75rem',
         '3xxl': '2rem',
         '4xxl': '2.75rem',

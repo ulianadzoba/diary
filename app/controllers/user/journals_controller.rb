@@ -1,11 +1,13 @@
 class User::JournalsController < User::AccountController
+  include JournalsHelper
+  
   def index
     @pagy, @journals = pagy(collection, items: 9)
   end
 
   def show
     @journal = resource
-    @pagy, @posts = pagy(@journal.posts.ordered, items: 8)
+    @pagy, @posts = pagy(@journal.posts.ordered, items: posts_number)
   end
 
   def new

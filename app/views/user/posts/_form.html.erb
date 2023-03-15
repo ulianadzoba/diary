@@ -1,43 +1,49 @@
-<%= simple_form_for post, url: [:user, @journal, @post], html: { data: { turbo: with_turbo, controller: 'post-form' }, id: 'post-form' } do |f| %>
-  <%= f.input :title %>
-  <%= f.input :content, input_html: { rows: 30, class: 'tinymce' } %>
-  <%= f.input :audio, input_html: {  class: 'hidden', direct_upload: true, data: { action:'change->post-form#audioPreview', 'post-form-target': 'audioInput' } } %>
-  <%= f.hidden_field :audio, value: f.object.audio.signed_id if f.object.audio.attached? %>
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<%= turbo_frame_tag 'post-form' do %> 
+  <%= simple_form_for post, url: [:user, @journal, @post], html: { data: { turbo: with_turbo, controller: 'post-form' }, id: 'post-form' } do |f| %>
+    <%= f.input :title %>
+    <%= f.input :content, input_html: { rows: 30, class: 'tinymce' } %>
+    <%= f.input :audio, input_html: {  class: 'hidden', direct_upload: true, data: { action:'change->post-form#audioPreview', 'post-form-target': 'audioInput' } } %>
+    
+    <%= f.hidden_field :audio, value: f.object.audio.signed_id, data: { 'post-form-target': 'hiddenAudioInput' } if f.object.audio.attached? %>
+    
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    
+    <div class='mt-2 flex items-center'>
+      <div class='pr-6'>
+        <%= content_tag(:i, nil, id: 'audio-record-button', class:'bi bi-mic-fill microphone-icon text-3xl cursor-pointer', data: { 'post-form-target': 'recordButton' }) %>
+      </div>
+      <div id='audio-preview' data-action='post-form#audioPreview' data-post-form-target='audioPreview'>
+        <% if f.object.audio.attached? %>
+          <div class='flex items-top'>
+            <i class='bi text-2xl bi-file-earmark-music-fill'></i>
+            <%= link_to [:delete_audio, :user, @journal, @post], class: 'block' do %>
+              <i class='bi text-sm bi-x-circle-fill cursor-pointer'></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   
-  <div class='mt-2 flex items-center'>
-    <div class='pr-6'>
-      <%= content_tag(:i, nil, id: 'audio-record-button', class:'bi bi-mic-fill microphone-icon text-3xl cursor-pointer', data: { 'post-form-target': 'recordButton' }) %>
-    </div>
-    <div id='audio-preview' data-action='post-form#audioPreview' data-post-form-target='audioPreview'>
-      <% if f.object.audio.attached? %>
-        <div class='flex items-top'>
-          <i class='bi text-2xl bi-file-earmark-music-fill'></i>
-          <i class='bi text-sm bi-x-circle-fill cursor-pointer' data-action='click->post-form#removeAudioPreview'></i>
-        </div>
+    <h3 class='mt-6'>Images</h3>
+    <div id='images'>
+      <%= link_to_add_association f, :images, class: 'flex mt-4' do %>
+        <span class='heading-source-code font-gilroy pr-2'>Add image</span>
+        <%= image_tag 'icons/plus.svg', width: '16px' %>
       <% end %>
-    </div>
-  </div>
-  
-  <h3 class='mt-6'>Images</h3>
-  <div id='images'>
-    <%= link_to_add_association f, :images, class: 'flex mt-4' do %>
-      <span class='heading-source-code font-gilroy pr-2'>Add image</span>
-      <%= image_tag 'icons/plus.svg', width: '16px' %>
-    <% end %>
-    <% if post.errors[:images].present? %>
-      <div class='mt-2 text-xs text-red-400'><%= post.errors[:images].join(', ') %></div>
-    <% end %>
-    <div class='flex flex-wrap mt-6 -mx-3 gap-y-6'>
-      <%= f.simple_fields_for :images do |image| %>
-        <%= render 'user/posts/image_fields', f: image %>
+      <% if post.errors[:images].present? %>
+        <div class='mt-2 text-sm text-red-400'><%= post.errors[:images].join(', ') %></div>
       <% end %>
+      <div class='flex flex-wrap mt-6 -mx-3 gap-y-6'>
+        <%= f.simple_fields_for :images do |image| %>
+          <%= render 'user/posts/image_fields', f: image %>
+        <% end %>
+      </div>
     </div>
-  </div>
 
-  <div class='flex justify-end mt-8'>
-    <%= f.submit 'Save', class: 'btn-base' %>
-  </div>
+    <div class='flex justify-end mt-8'>
+      <%= f.submit 'Save', class: 'btn-base' %>
+    </div>
+  <% end %>
 <% end %>
 
 <%= tinymce %>

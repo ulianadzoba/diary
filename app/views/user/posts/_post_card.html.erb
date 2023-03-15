@@ -3,15 +3,15 @@
     <%= image_tag 'icons/clip.svg', width: '30px'%>
   </div>
   <div class='post-header bg-bright-brown p-4 h-[116px]'>
-    <div class='flex justify-between h-full'>
-      <div class='pr-8 flex flex-col justify-between'>
+    <div class='grid grid-cols-5 gap-10 h-full'>
+      <div class='pr-8 col-span-4 flex flex-col justify-between'>
         <%= link_to [:user, journal, post], class: 'block col-span-2', data: { turbo_frame: 'modal' } do %>
           <h3><%= post.title %></h3>
         <% end %>
         <p class='content-small-accent mt-2'><%= l(post.created_at, format: :full_date) %></p>
       </div>
 
-      <div class='flex justify-end'>
+      <div class='col-span-1 flex justify-end'>
         <%= link_to [:edit, :user, journal, post], data: { turbo_frame: 'modal' }, class: 'block pr-2' do %>
           <%= image_tag 'icons/edit.svg', width: '16px' %>
         <% end %>
@@ -23,6 +23,6 @@
   </div>
 
   <div class='post-content p-4'>
-    <p class='content-small line-clamp-7'><%= post.content %></p>
+    <p class='content-small line-clamp-7'><%= strip_tags(post.content) %></p>
   </div>
 </div>

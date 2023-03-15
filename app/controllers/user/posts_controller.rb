@@ -46,6 +46,14 @@ class User::PostsController < User::AccountController
     redirect_to [:user, @journal], notice: 'Post has been removed.'
   end
 
+  def delete_audio
+    @journal = journal_resource
+    @post = resource
+    @post.audio.purge
+    
+    render turbo_stream: turbo_stream.replace('post-form', partial: 'user/posts/form', locals: { post: @post, journal: @journal, with_turbo: true })
+  end
+
   private
 
   def journal_resource

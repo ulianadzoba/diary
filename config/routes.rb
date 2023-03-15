@@ -28,7 +28,11 @@ Rails.application.routes.draw do
         get :new_author
         post :assign_author
       end
-      resources :posts, except: [:index]
+      resources :posts, except: [:index] do
+        member do
+          get :delete_audio
+        end
+      end
     end
   end
 

@@ -25,10 +25,10 @@ SimpleForm.setup do |config|
     b.use :label, class: 'ml-1 mb-2 font-source-code'
     b.use :input,
           class: 'mt-1 focus:ring-accents-brown focus:border-accents-brown ' \
-                 'block w-full shadow-sm sm:text-sm border-2 border-black font-source-code',
+                 'block w-full shadow-sm text-sm border-2 border-black font-source-code',
           error_class: 'border-raccents-brown is-invalid mb-1', valid_class: 'is-valid'
-    b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-xs text-accents-brown font-source-code' }
-    b.use :hint, wrap_with: { tag: 'small', class: 'text-xs text-accents-brown font-source-code' }
+    b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-sm text-accents-red font-source-code' }
+    b.use :hint, wrap_with: { tag: 'small', class: 'text-sm text-accents-brown font-source-code' }
   end
 
   # vertical input for radio buttons and check boxes
@@ -46,7 +46,7 @@ SimpleForm.setup do |config|
     b.use :input, class: 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-2 mr-2',
                   error_class: 'is-invalid border-red-400',
                   valid_class: 'is-valid'
-    b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-xs text-red-400' }
+    b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-sm text-red-400' }
     b.use :hint, wrap_with: { tag: 'small', class: 'text-gray-400' }
   end
 
@@ -64,7 +64,7 @@ SimpleForm.setup do |config|
   #   b.use :input, class: 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2',
   #                 error_class: 'is-invalid border-red-400',
   #                 valid_class: 'is-valid'
-  #   b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-xs text-red-400' }
+  #   b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-sm text-red-400' }
   #   b.use :hint, wrap_with: { tag: 'small', class: 'text-gray-400' }
   # end
 
@@ -81,7 +81,7 @@ SimpleForm.setup do |config|
     b.wrapper :grid_wrapper, tag: 'div' do |ba|
       ba.use :input, class: 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2',
                      error_class: 'is-invalid', valid_class: 'is-valid'
-      ba.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-xs text-red-400' }
+      ba.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-sm text-red-400' }
       ba.use :hint, wrap_with: { tag: 'small', class: 'text-gray-400' }
     end
   end
@@ -98,7 +98,7 @@ SimpleForm.setup do |config|
                      error_class: '!border-red-500',
                      valid_class: 'is-valid'
     end
-    b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-xs text-red-400' }
+    b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-sm text-red-400' }
     b.use :hint, wrap_with: { tag: 'small', class: 'text-gray-400' }
   end
 
@@ -114,7 +114,7 @@ SimpleForm.setup do |config|
                      valid_class: 'is-valid'
       bb.use :label, class: 'mb-2 font-source-code'
     end
-    b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-xs text-red-400' }
+    b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-sm text-red-400' }
     b.use :hint, wrap_with: { tag: 'small', class: 'text-gray-400' }
   end
 
@@ -132,8 +132,8 @@ SimpleForm.setup do |config|
     b.use :input, class: 'w-full font-source-code min-w-fit mt-1 block sm:text-sm cursor-pointer',
                   error_class: 'border-red-400 is-invalid mb-1',
                   valid_class: 'is-valid'
-    b.use :full_error, wrap_with: { tag: 'div', class: 'font-source-code invalid-feedback text-xs text-accents-brown' }
-    b.use :hint, wrap_with: { tag: 'small', class: 'text-xs text-accents-black font-source-code' }
+    b.use :full_error, wrap_with: { tag: 'div', class: 'font-source-code invalid-feedback text-sm text-accents-red' }
+    b.use :hint, wrap_with: { tag: 'small', class: 'text-sm text-accents-black font-source-code' }
   end
 
   # Custom wrappers for input types. This should be a hash containing an input
