@@ -1,5 +1,5 @@
-import { Controller } from "@hotwired/stimulus";
-import { animateCSS } from '../utils';
+import { Controller } from '@hotwired/stimulus';
+import { animateCSS } from '../utils/animation';
 
 export default class extends Controller {
   connect() {

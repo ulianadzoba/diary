@@ -1,1 +1,7 @@
-<h1 class='animate__animated animate__bounce'>Home</h1>
+<div class='flex justify-center h-screen rounded' style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url(<%= asset_path 'bg.jpg' %>) no-repeat center; background-size: cover">
+  <div class='pt-64 flex flex-col items-center'>
+    <h1 class='text-white text-center px-4'>Blog Diary</h1>
+    <p class='text-white font-source-code py-4'>Create and write your thoughts</p>
+    <%= link_to 'Subscribe', '#', class: 'btn-base block' %>
+  </div>
+</div>

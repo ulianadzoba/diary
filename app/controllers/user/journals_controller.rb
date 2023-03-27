@@ -86,6 +86,6 @@ class User::JournalsController < User::AccountController
   end
 
   def journal_params
-    params.require(:journal).permit(:name, :description, :preview, :private)
+    params.require(:journal).permit(:name, :description, :preview, :private, :category_id)
   end
 end

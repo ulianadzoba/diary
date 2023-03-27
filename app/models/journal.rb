@@ -10,12 +10,14 @@
 #  updated_at  :datetime         not null
 #  user_id     :bigint
 #  preview     :string
+#  category_id :bigint           not null
 #
 class Journal < ApplicationRecord
   mount_uploader :preview, JournalPreviewUploader
 
   has_many :posts, dependent: :destroy
   has_and_belongs_to_many :users
+  belongs_to :category
   belongs_to :user
 
   validates :name, presence: true

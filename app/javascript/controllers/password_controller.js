@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["input"];
+  static targets = ['input'];
 
   toggleVisibility(e) {
     let target = e.currentTarget;

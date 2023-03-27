@@ -3,8 +3,8 @@
 # Table name: notifications
 #
 #  id         :bigint           not null, primary key
-#  message    :string           not null
-#  seen       :boolean
+#  message    :string
+#  seen       :boolean          default(FALSE)
 #  type       :string           not null
 #  user_id    :bigint           not null
 #  journal_id :bigint

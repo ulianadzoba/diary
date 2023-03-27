@@ -4,12 +4,12 @@
 
     <div class='bg-primary-white h-55 rounded'>
       <% if journal.preview.present?%>
-        <div class='flex justify-center items-center h-full rounded' style="background: linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url(<%= journal.preview.url(:medium) %>) no-repeat center; background-size: cover">
-          <h1 class='text-accents-brown text-center px-4'><%= journal.name %></h1>
+        <div class='flex justify-center items-center h-full rounded' style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url(<%= journal.preview.url(:medium) %>) no-repeat center; background-size: cover">
+          <h1 class='text-bright-brown text-center px-4'><%= journal.name %></h1>
         </div>
       <% else %>
         <div class='flex justify-center items-center h-full'>
-          <h1 class='text-accents-brown text-center px-4'><%= journal.name %></h1>
+          <h1 class='text-bright-brown text-center px-4'><%= journal.name %></h1>
         </div>
       <% end %>
     </div>

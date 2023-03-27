@@ -10,6 +10,7 @@
 #  updated_at  :datetime         not null
 #  user_id     :bigint
 #  preview     :string
+#  category_id :bigint           not null
 #
 FactoryBot.define do
   factory :journal do

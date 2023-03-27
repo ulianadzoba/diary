@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["modal"];
+  static targets = ['modal'];
 
   connect(e) {
     if (!this.backdrop) {
@@ -10,22 +10,18 @@ export default class extends Controller {
   }
 
   hideModal() {
-    this.element.parentElement.removeAttribute("src");
+    this.element.parentElement.removeAttribute('src');
 
     this.modalTarget.remove();
     this.backdrop.remove();
   }
 
   submitEnd(e) {
-    if (e.detail.success) {
-      this.hideModal();
-    }
+    if (e.detail.success) this.hideModal();
   }
 
   closeWithKeyboard(e) {
-    if (e.code == "Escape") {
-      this.hideModal();
-    }
+    if (e.code == 'Escape') this.hideModal();
   }
 
   get backdrop() {
