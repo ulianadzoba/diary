@@ -17,3 +17,4 @@ pin 'ssr-window', to: 'https://ga.jspm.io/npm:ssr-window@4.0.2/ssr-window.esm.js
 pin 'stimulus-use', to: 'https://ga.jspm.io/npm:stimulus-use@0.52.0/dist/index.js'
 pin '@popperjs/core', to: 'https://ga.jspm.io/npm:@popperjs/core@2.11.2/lib/index.js'
 pin '@rails/activestorage', to: 'activestorage.esm.js'
+pin "stimulus-textarea-autogrow", to: "https://ga.jspm.io/npm:stimulus-textarea-autogrow@4.1.0/dist/stimulus-textarea-autogrow.mjs"

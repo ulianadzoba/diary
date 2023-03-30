@@ -1,4 +1,4 @@
-<section class='large-container relative' id="<%= dom_id post %>">
+<section class='large-container relative' id="<%= dom_id post %>" data-controller='reader'>
   <div class='absolute -top-5 right-60'>
     <%= image_tag 'icons/clip.svg', width: '50px'%>
   </div>
@@ -13,7 +13,11 @@
       <% end %>
     </div>
   </div>
-  <p class='content-small-accent mt-8'><%= l(post.created_at, format: :full_date) %></p>
+  <div class='content-small-accent mt-8 flex'>
+    <span class='pr-4'><%= l(post.created_at, format: :full_date) %></span>
+    <%= image_tag 'icons/circle.svg', width: '6px' %>
+    <span class='pl-4' data-reader-target='readingTime'></span>
+  </div>
   
   <% if post.audio.attached? %>
     <div class='mt-8'>
@@ -21,7 +25,7 @@
     </div>
   <% end %>
 
-  <div class='content-base my-8'>
+  <div class='content-base my-8' data-reader-target='content'>
     <%== post.content %>
   </div>
 
