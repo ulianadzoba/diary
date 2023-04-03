@@ -32,6 +32,8 @@ gem 'omniauth-rails_csrf_protection'
 gem 'pagy'
 gem 'image_processing', '~> 1.2'
 gem 'mini_magick'
+gem 'searchkick'
+gem  'elasticsearch', "< 7.14"
 
 group :development, :test do
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]

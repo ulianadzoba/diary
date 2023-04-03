@@ -12,6 +12,11 @@ Rails.application.routes.draw do
 
   resources :journals, only: [:index, :show] do
     resources :posts, only: [:show]
+    collection do
+      get :search
+      post :search
+      post :suggestions, as: :search_suggestions    
+    end
   end
 
   post 'tinymce_pictures', to: 'tinymce_pictures#create'

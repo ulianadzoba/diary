@@ -14,7 +14,7 @@
 # Instance variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#instance-variables
 # Pagy::DEFAULT[:page]   = 1                                  # default
-Pagy::DEFAULT[:items]  = 12                                 # default
+Pagy::DEFAULT[:items]  = 9                                 # default
 # Pagy::DEFAULT[:outset] = 0                                  # default
 
 
@@ -118,9 +118,9 @@ Pagy::DEFAULT[:items]  = 12                                 # default
 # DEFAULT[:searchkick_pagy_search] = :pagy_search
 # Default original :search method called internally to do the actual search
 # Pagy::DEFAULT[:searchkick_search] = :search
-# require 'pagy/extras/searchkick'
+require 'pagy/extras/searchkick'
 # uncomment if you are going to use Searchkick.pagy_search
-# Searchkick.extend Pagy::Searchkick
+Searchkick.extend Pagy::Searchkick
 
 
 # Frontend Extras
@@ -244,7 +244,6 @@ Pagy::DEFAULT[:items]  = 12                                 # default
 
 # Default i18n key
 # Pagy::DEFAULT[:i18n_key] = 'pagy.item_name'   # default
-
 
 # When you are done setting your own default freeze it, so it will not get changed accidentally
 Pagy::DEFAULT.freeze

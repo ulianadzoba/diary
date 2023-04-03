@@ -1,0 +1,32 @@
+<%= form_with(url: form_url, method: :post, class: 'flex', data: {
+  turbo_frame: 'page_handler', 
+  controller: 'search',
+  action: 'keyup->search#suggestions',
+  suggestions_url: suggestions_url
+}) do |f| %>
+  <div class='relative'>
+    <%= f.text_field :query, data: {
+      search_target: 'input',
+      action: 'blur->search#hideSuggestions'
+    },
+      class: 'text-sm border-2 border-black font-source-code pr-9 pl-9 ' \
+             'shadow-sm focus:ring-accents-brown focus:border-accents-brown w-72',
+      placeholder: 'Search...',
+      autocomplete: 'off'
+    %>
+    <div class='absolute inset-y-0 left-0 flex items-center'>
+      <%= f.button nil, class: 'pl-2' do %>
+        <%= image_tag 'icons/search.svg', width: '20px' %>
+      <% end %>
+    </div>
+    <div class='absolute inset-y-0 right-0 flex items-center cursor-pointer'>
+      <div class='pr-2' data-action='click->search#clearInput' >
+        <%= image_tag 'icons/close.svg', width: '20px' %>
+      </div>
+    </div>
+    <div id='suggestions' class='z-30 absolute w-full mt-2 bg-white rounded-lg shadow-lg'
+        data-search-target='suggestions' data-action='mousedown->search#childClicked'>
+      <%= render partial: 'search/suggestions', locals: { results: results } %>
+    </div>
+  </div>
+<% end %>

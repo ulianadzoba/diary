@@ -13,8 +13,9 @@
 #  category_id :bigint           not null
 #
 class Journal < ApplicationRecord
+  extend Pagy::Searchkick
   mount_uploader :preview, JournalPreviewUploader
-
+  
   has_many :posts, dependent: :destroy
   has_and_belongs_to_many :users
   belongs_to :category
@@ -24,4 +25,6 @@ class Journal < ApplicationRecord
 
   scope :ordered, -> { order(:name) }
   scope :shared, -> { where(private: false) }
+
+  searchkick text_middle: %i[name description]
 end
