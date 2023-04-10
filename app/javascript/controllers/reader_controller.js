@@ -13,6 +13,6 @@ export default class extends Controller {
     const wordsPerMinute = 265;
     const numberOfWords = content.split(/\s/g).length;
     const estimatedTimeInMinutes = _.ceil(numberOfWords/wordsPerMinute);
-    this.readingTimeTarget.textContent = `${estimatedTimeInMinutes} min read`
+    this.readingTimeTarget.textContent = `${estimatedTimeInMinutes} min read`;
   }
 }

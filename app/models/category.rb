@@ -21,4 +21,5 @@ class Category < ApplicationRecord
   validates :name, presence: true
 
   scope :ordered, -> { order(:name) }
+  scope :with_journals,   -> { joins(:journals).distinct }
 end

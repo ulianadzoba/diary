@@ -36,6 +36,7 @@ module.exports = {
         'base-red': 'rgba(219, 150, 155, 1)',
         'base-yellow': 'rgba(237, 237, 164, 1)',
         'base-gray': '#e8e3d9',
+        'dynamic': 'var(--dynamic-color)',
       },
       padding: {
         '18': '4.5rem',

@@ -23,7 +23,7 @@ class Journal < ApplicationRecord
 
   validates :name, presence: true
 
-  scope :ordered, -> { order(:name) }
+  scope :ordered, -> { order(:created_at) }
   scope :shared, -> { where(private: false) }
 
   searchkick text_middle: %i[name description]

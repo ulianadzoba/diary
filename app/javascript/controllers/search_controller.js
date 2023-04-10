@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ['input', 'suggestions'];
+  static targets = ['input', 'suggestions', 'hiddenCategoryId'];
 
   connect() {
     document.addEventListener('click', (event) => {
@@ -14,14 +14,15 @@ export default class extends Controller {
   suggestions() {
     const query = this.inputTarget.value;
     const url = this.element.dataset.suggestionsUrl;
+    const category_id = this.hiddenCategoryIdTarget.value;
 
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      this.requestSuggestions(query, url);
+      this.requestSuggestions(query, category_id, url);
     }, 250);
   }
 
-  requestSuggestions(query, url) {
+  requestSuggestions(query, category_id, url) {
     if (query.length === 0) {
       this.hideSuggestions();
       return;
@@ -34,7 +35,7 @@ export default class extends Controller {
         'Content-Type': 'application/json',
         'X-CSRF-Token': document.querySelector("meta[name='csrf-token']").content,
       },
-      body: JSON.stringify({ query: query }),
+      body: JSON.stringify({ query: query, category_id: category_id }),
     }).then((response) => {
       response.text().then((html) => {
         document.body.insertAdjacentHTML('beforeend', html);

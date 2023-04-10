@@ -1,10 +1,11 @@
-<%= form_with(url: form_url, method: :post, class: 'flex', data: {
+<%= form_with(url: form_url, method: :post, class: 'flex', id: 'search_form',  data: {
   turbo_frame: 'page_handler', 
   controller: 'search',
   action: 'keyup->search#suggestions',
   suggestions_url: suggestions_url
 }) do |f| %>
   <div class='relative'>
+    <%= f.hidden_field :category_id, value: params[:category_id], data: { 'search-target': 'hiddenCategoryId'} %>
     <%= f.text_field :query, data: {
       search_target: 'input',
       action: 'blur->search#hideSuggestions'
@@ -12,7 +13,8 @@
       class: 'text-sm border-2 border-black font-source-code pr-9 pl-9 ' \
              'shadow-sm focus:ring-accents-brown focus:border-accents-brown w-72',
       placeholder: 'Search...',
-      autocomplete: 'off'
+      autocomplete: 'off', 
+      value: params[:query]
     %>
     <div class='absolute inset-y-0 left-0 flex items-center'>
       <%= f.button nil, class: 'pl-2' do %>

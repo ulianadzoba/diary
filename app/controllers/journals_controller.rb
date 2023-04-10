@@ -11,12 +11,25 @@ class JournalsController < ApplicationController
   end
 
   def search
-    results = Journal.pagy_search(params[:query], **search_params)
+    results = 
+      if category_id
+        additional_params = { where: { category_id: category_id } }
+        Journal.pagy_search(search_field, **search_category_params, **additional_params)
+      else
+        Journal.pagy_search(search_field, **search_input_params)
+      end
+
     @pagy, @journals = pagy_searchkick(results, items: 9)
   end
 
   def suggestions
-    @results = Journal.search(params[:query], **search_params)
+    @results = 
+      if category_id
+        additional_params = { where: { category_id: category_id } }
+        Journal.search(search_field, **search_category_params, **additional_params)
+      else
+        Journal.search(search_field, **search_input_params)
+      end
   end
 
   private
@@ -29,9 +42,27 @@ class JournalsController < ApplicationController
     collection.find(params[:id])
   end
 
-  def search_params
+  def search_field
+    params[:query].present? ? params[:query] : '*'
+  end
+
+  def category_id
+    params[:category_id].present? ? params[:category_id].to_i : nil
+  end
+  
+  def search_input_params
     { 
+      where: { private: false },
       fields: %i[name description], 
+      operator: 'or',
+      match: :text_middle
+    }
+  end
+
+  def search_category_params
+    { 
+      where: { private: false },
+      fields: %i[name description category_id], 
       operator: 'or',
       match: :text_middle
     }

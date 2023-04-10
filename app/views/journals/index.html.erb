@@ -1,7 +1,8 @@
 <div class='responsive-container mt-10'>
   <%= turbo_frame_tag 'page_handler' %>
-  <div class='mb-10 flex justify-end'>
-    <%= render partial: 'search/form', locals: { results: [], form_url: search_journals_path, suggestions_url: search_suggestions_journals_path }%>
+  <div class='mb-10 flex justify-between'>
+    <%= render partial: 'search/categories', locals: { form_url: search_journals_path }%>
+    <%= render partial: 'search/input_form', locals: { results: [], form_url: search_journals_path, suggestions_url: search_suggestions_journals_path }%>
   </div>
   <% if @journals.present? %>
     <div id='journals' class='grid grid-cols-6 gap-10'>
