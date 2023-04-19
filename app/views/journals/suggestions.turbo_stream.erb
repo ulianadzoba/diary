@@ -1,1 +1,1 @@
-<%= turbo_stream.update('suggestions', partial: 'search/suggestions', locals: { results: @results  }) %>
+<%= turbo_stream.update('suggestions', partial: 'search/journals/suggestions', locals: { results: @results, public: true }) %>

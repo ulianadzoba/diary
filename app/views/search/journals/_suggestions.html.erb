@@ -2,7 +2,7 @@
   <div class='absolute w-full overflow-y-auto max-h-60 bg-white shadow-xl'>
     <% results.each do |item| %>
       <div class='border-b border-gray-300 hover:bg-gray-100 pl-4 pr-6 py-2 subtitle-base'>
-        <%= link_to item.name, item, class: '' %>
+        <%= link_to item.name, (public ? item : [:user, item]), class: '' %>
       </div>
     <% end %>
   </div>

@@ -1,5 +1,6 @@
 class JournalsController < ApplicationController
   include JournalsHelper
+  include Search
 
   def index
     @pagy, @journals = pagy(collection, items: 9)
@@ -40,14 +41,6 @@ class JournalsController < ApplicationController
 
   def resource
     collection.find(params[:id])
-  end
-
-  def search_field
-    params[:query].present? ? params[:query] : '*'
-  end
-
-  def category_id
-    params[:category_id].present? ? params[:category_id].to_i : nil
   end
   
   def search_input_params

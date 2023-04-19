@@ -1,6 +1,9 @@
 <div class='bg-primary-white p-4 rounded min-h-[400px]' id='journal-info'>
   <div class='grid grid-cols-5 gap-10'>
     <div class='col-span-2'>
+      <div class='border-2 flex border-black subtitle-base mb-4 w-fit px-4'>
+        <%= journal.category.name %>
+      </div>
       <h1><%= journal.name %></h1>
       <p class='content-base my-4'><%= journal.description %></p>
     </div>

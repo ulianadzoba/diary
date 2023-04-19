@@ -1,0 +1,12 @@
+<% next_page = @pagy.next %>
+<% turbo_method = @pagy.page == 1 ? 'update' : 'append'%>
+<%= turbo_frame_tag 'page_handler' do %>
+  <%= turbo_stream_action_tag('update', target: 'categories', 
+    template: %(#{render 'search/journals/categories', public: false})) %>
+  <%= turbo_stream_action_tag('replace', target: 'search_form', 
+    template: %(#{render 'search/journals/input_form', results: [], form_url: search_user_journals_path, suggestions_url: search_suggestions_user_journals_path, public: false})) %>
+  <%= turbo_stream_action_tag(turbo_method, target: 'journals',
+    template: %(#{render partial: 'journals/journal', collection: @journals, locals: { public: false }})) %>
+  <%= turbo_stream_action_tag('replace', target: 'load_more', 
+    template: %(#{render 'shared/load_more', next_page: next_page, page_path: search_user_journals_path(page: next_page, query: params[:query], category_id: params[:category_id])})) %>
+<% end %>

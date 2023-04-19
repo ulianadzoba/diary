@@ -1,5 +1,6 @@
 class User::JournalsController < User::AccountController
   include JournalsHelper
+  include Search
   
   def index
     @pagy, @journals = pagy(collection, items: 9)
@@ -8,6 +9,27 @@ class User::JournalsController < User::AccountController
   def show
     @journal = resource
     @pagy, @posts = pagy(@journal.posts.ordered, items: posts_number)
+  end
+
+  def search
+    results = 
+      if category_id
+        additional_params = { where: { category_id: category_id } }
+        Journal.pagy_search(search_field, **search_category_params)
+      else
+        Journal.pagy_search(search_field, **search_input_params)
+      end
+
+    @pagy, @journals = pagy_searchkick(results, items: 9)
+  end
+
+  def suggestions
+    @results = 
+      if category_id
+        Journal.search(search_field, **search_category_params)
+      else
+        Journal.search(search_field, **search_input_params)
+      end
   end
 
   def new
@@ -77,8 +99,7 @@ class User::JournalsController < User::AccountController
   private 
 
   def collection
-    journal_ids = current_user.own_journals.pluck(:id) + current_user.journals.pluck(:id)
-    Journal.where(id: journal_ids).includes(:posts)
+    Journal.where(id: related_journals_ids).includes(:posts)
   end
 
   def resource
@@ -87,5 +108,27 @@ class User::JournalsController < User::AccountController
 
   def journal_params
     params.require(:journal).permit(:name, :description, :preview, :private, :category_id)
+  end
+
+  def related_journals_ids
+    current_user.own_journals.pluck(:id) + current_user.journals.pluck(:id)
+  end
+  
+  def search_input_params
+    { 
+      where: { id: related_journals_ids, private: false },
+      fields: %i[name description], 
+      operator: 'or',
+      match: :text_middle
+    }
+  end
+
+  def search_category_params
+    { 
+      where: { id: related_journals_ids, category_id: category_id, private: false },
+      fields: %i[name description category_id], 
+      operator: 'or',
+      match: :text_middle
+    }
   end
 end

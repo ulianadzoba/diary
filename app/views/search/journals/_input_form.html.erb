@@ -28,7 +28,7 @@
     </div>
     <div id='suggestions' class='z-30 absolute w-full mt-2 bg-white rounded-lg shadow-lg'
         data-search-target='suggestions' data-action='mousedown->search#childClicked'>
-      <%= render partial: 'search/suggestions', locals: { results: results } %>
+      <%= render partial: 'search/journals/suggestions', locals: { results: results, public: public } %>
     </div>
   </div>
 <% end %>

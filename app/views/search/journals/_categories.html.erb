@@ -1,12 +1,12 @@
 <div class='flex' id='categories'>
   <div class='border-2 border-black mr-2 hover:bg-bright-brown subtitle-base bg-dynamic'
        style="--dynamic-color: <%= params[:category_id].blank? ? 'rgb(201, 179, 153' : '' %>">
-    <%= link_to 'All', search_journals_path(category_id: nil, query: params[:query]), class: 'block pl-4 pr-4 py-2', data: { turbo_frame: 'page_handler'} %>
+    <%= link_to 'All', (public ? search_journals_path(category_id: nil, query: params[:query]) : search_user_journals_path(category_id: nil, query: params[:query])), class: 'block pl-4 pr-4 py-2', data: { turbo_frame: 'page_handler'} %>
   </div>
   <% Category.with_journals.ordered.each do |category| %>
     <div class='border-2 border-black mr-2 hover:bg-bright-brown subtitle-base bg-dynamic'
          style="--dynamic-color: <%= params[:category_id].to_i === category.id ? 'rgb(201, 179, 153' : '' %>">
-      <%= link_to category.name, search_journals_path(category_id: category.id, query: params[:query]), class: 'block pl-4 pr-4 py-2', data: { turbo_frame: 'page_handler'} %>
+      <%= link_to category.name, (public ? search_journals_path(category_id: category.id, query: params[:query]) : search_user_journals_path(category_id: category.id, query: params[:query])), class: 'block pl-4 pr-4 py-2', data: { turbo_frame: 'page_handler'} %>
     </div>
   <% end %>
 </div>

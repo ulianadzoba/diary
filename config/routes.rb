@@ -29,6 +29,11 @@ Rails.application.routes.draw do
       end
     end
     resources :journals do
+      collection do
+        get :search
+        post :search
+        post :suggestions, as: :search_suggestions    
+      end
       member do
         get :new_author
         post :assign_author
