@@ -9,6 +9,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  journal_id :bigint
+#  published  :boolean          default(FALSE)
 #
 class Post < ApplicationRecord
   belongs_to :journal
@@ -21,6 +22,7 @@ class Post < ApplicationRecord
   validates :title, :content, presence: true
 
   scope :ordered, -> { order(created_at: :desc) }
+  scope :published, -> { where(published: true) }
 
   after_commit :clear_unattached_files
 

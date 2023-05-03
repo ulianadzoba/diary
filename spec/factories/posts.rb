@@ -9,6 +9,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  journal_id :bigint
+#  published  :boolean          default(FALSE)
 #
 FactoryBot.define do
   factory :post do

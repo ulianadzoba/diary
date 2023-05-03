@@ -1,10 +1,15 @@
-<section class='large-container relative' id="<%= dom_id post %>" data-controller='reader'>
+<section class="large-container relative <%= 'filter contrast-75' unless post.published? %>" id="<%= dom_id post %>" data-controller='reader'>
   <div class='absolute -top-5 right-60'>
     <%= image_tag 'icons/clip.svg', width: '50px'%>
   </div>
   <div class='flex justify-between'>
     <h1 class='pr-10'><%= post.title %></h1>
     <div class='flex justify-end w-[15%]'>
+      <% unless post.published? %>
+        <%= link_to [:publish, :user, journal, post], class: 'block pr-4' do %>
+          <%= image_tag 'icons/mark.svg', width: '16px' %>
+        <% end %>
+      <% end %>
       <%= link_to [:edit, :user, journal, post], data: { turbo_frame: 'modal' }, class: 'block pr-4' do %>
         <%= image_tag 'icons/edit.svg', width: '20px' %>
       <% end %>

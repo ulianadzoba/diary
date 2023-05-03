@@ -1,7 +1,7 @@
 class User::JournalsController < User::AccountController
   include JournalsHelper
   include Search
-  
+
   def index
     @pagy, @journals = pagy(collection, items: 9)
   end
@@ -14,7 +14,6 @@ class User::JournalsController < User::AccountController
   def search
     results = 
       if category_id
-        additional_params = { where: { category_id: category_id } }
         Journal.pagy_search(search_field, **search_category_params)
       else
         Journal.pagy_search(search_field, **search_input_params)

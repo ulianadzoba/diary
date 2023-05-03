@@ -38,6 +38,19 @@ class User::PostsController < User::AccountController
     end
   end
 
+  def publish
+    @journal = journal_resource
+    @post = resource
+
+    if @post.update_attribute(:published, true)
+      flash.now[:notice] = 'Post has been published'
+
+      render formats: :turbo_stream
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @journal = journal_resource
     @post = resource

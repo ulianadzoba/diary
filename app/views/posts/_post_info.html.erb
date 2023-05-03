@@ -5,7 +5,18 @@
   <div class='flex justify-between'>
     <h1 class='pr-10'><%= post.title %></h1>
   </div>
-  <p class='content-small-accent mt-8'><%= l(post.created_at, format: :full_date) %></p>
+  <div class='content-small-accent mt-8 flex'>
+    <span class='pr-4'><%= l(post.created_at, format: :full_date) %></span>
+    <%= image_tag 'icons/circle.svg', width: '6px' %>
+    <span class='pl-4' data-reader-target='readingTime'></span>
+  </div>
+  
+  <% if post.audio.attached? %>
+    <div class='mt-8'>
+      <%= audio_tag(url_for(post.audio), class:'message-audio', controls: '') %>
+    </div>
+  <% end %>
+
   <div class='content-base my-8'>
     <%== post.content %>
   </div>

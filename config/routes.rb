@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       end
       resources :posts, except: [:index] do
         member do
+          get :publish
           get :delete_audio
         end
       end
