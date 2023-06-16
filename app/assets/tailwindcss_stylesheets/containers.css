@@ -12,6 +12,10 @@
   }
 
   .large-container {
-    @apply w-[1100px] mx-auto my-8 p-10 bg-primary-white shadow-xl;
+    @apply w-[1100px] mx-auto my-4 p-10 bg-primary-white shadow-xl;
+  }
+
+  .large-container-simple {
+    @apply w-[1100px] mx-auto mt-4;
   }
 }

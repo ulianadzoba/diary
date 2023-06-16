@@ -1,1 +1,4 @@
-<%= render 'posts/post_info', post: @post, journal: @journal %>
+<div class='large-container-simple'>
+  <%= render 'shared/breadcrumbs', url: journal_path(@journal), text: 'Diary' %>
+</div>
+<%= render 'posts/post_info', post: @post %>

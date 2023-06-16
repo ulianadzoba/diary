@@ -115,7 +115,7 @@ class User::JournalsController < User::AccountController
   
   def search_input_params
     { 
-      where: { id: related_journals_ids, private: false },
+      where: { id: related_journals_ids },
       fields: %i[name description], 
       operator: 'or',
       match: :text_middle
@@ -124,7 +124,7 @@ class User::JournalsController < User::AccountController
 
   def search_category_params
     { 
-      where: { id: related_journals_ids, category_id: category_id, private: false },
+      where: { id: related_journals_ids, category_id: category_id },
       fields: %i[name description category_id], 
       operator: 'or',
       match: :text_middle

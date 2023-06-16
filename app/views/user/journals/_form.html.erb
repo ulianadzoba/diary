@@ -1,7 +1,12 @@
-<%= simple_form_for journal, url: url, html: { class: 'flex flex-col gap-5' } do |f| %>
+<%= simple_form_for journal, url: url, html: { class: 'flex flex-col gap-5', data: { controller: 'voice-input' } } do |f| %>
   <%= f.association :category, collection: Category.ordered, required: true %>
   <%= f.input :name %>
-  <%= f.input :description, input_html: { rows: 6, data: { controller: 'textarea-autogrow' } } %>
+  <div class='relative'>
+    <div class='absolute right-0'>
+      <%= content_tag(:i, nil, class:'bi bi-mic-fill microphone-icon text-lg cursor-pointer', data: { 'voice-input-target': 'startButton', 'action': 'click->voice-input#record' }) %>
+    </div>
+    <%= f.input :description, input_html: { rows: 6, data: { controller: 'textarea-autogrow', voice_input_target: 'input' } } %>
+  </div>
   <%= f.input :preview, hint: "Allowed formats: #{journal.preview.allowed_extensions}. Recommended dimention #{journal.preview.recommended_dimension}" %>
   <%= f.input :private %>
   <div class='flex justify-end mt-8'>

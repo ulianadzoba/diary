@@ -1,4 +1,4 @@
-<section class='large-container relative'>
+<section class='large-container relative' data-controller='reader'>
   <div class='absolute -top-5 right-60'>
     <%= image_tag 'icons/clip.svg', width: '50px'%>
   </div>
@@ -17,7 +17,7 @@
     </div>
   <% end %>
 
-  <div class='content-base my-8'>
+  <div class='content-base my-8' data-reader-target='content'>
     <%== post.content %>
   </div>
 

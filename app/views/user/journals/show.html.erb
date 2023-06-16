@@ -1,14 +1,17 @@
 <div class='responsive-container mt-4'>
-  <div class='flex justify-end'>
-    <%= link_to [:new_author, :user, @journal], class: 'block pr-4', data: { turbo_frame: 'modal' } do %>
-      <%= image_tag 'icons/user-plus.svg', width: '26px' %>
-    <% end %>
-    <%= link_to [:edit, :user, @journal], class: 'block pr-4', data: { turbo_frame: 'modal' } do %>
-      <%= image_tag 'icons/edit.svg', width: '20px' %>
-    <% end %>
-    <%= button_to [:user, @journal], method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'block' do %>
-      <%= image_tag 'icons/delete.svg', width: '20px' %>
-    <% end %>
+  <div class='flex justify-between'>
+    <%= render 'shared/breadcrumbs', url: user_journals_path, text: 'Diaries' %>
+    <div class='flex justify-end'>
+      <%= link_to [:new_author, :user, @journal], class: 'block pr-4', data: { turbo_frame: 'modal' } do %>
+        <%= image_tag 'icons/user-plus.svg', width: '26px' %>
+      <% end %>
+      <%= link_to [:edit, :user, @journal], class: 'block pr-4', data: { turbo_frame: 'modal' } do %>
+        <%= image_tag 'icons/edit.svg', width: '20px' %>
+      <% end %>
+      <%= button_to [:user, @journal], method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'block' do %>
+        <%= image_tag 'icons/delete.svg', width: '20px' %>
+      <% end %>
+    </div>
   </div>
   <div class='bg-bright-brown p-3 pl-6 relative rounded mt-4'>
     <%= render 'shared/journal_spring' %>

@@ -1,4 +1,5 @@
 <div class='responsive-container mt-4'>
+  <%= render 'shared/breadcrumbs', url: journals_path, text: 'Diaries' %>
   <div class='bg-bright-brown p-3 pl-6 relative rounded mt-4'>
     <%= render 'shared/journal_spring' %>
     <%= render 'journals/journal_info', journal: @journal %>

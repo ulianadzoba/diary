@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :check_if_post_published, only: :show
 
   def show
+    @journal = journal_resource
     @post = resource
   end
 
